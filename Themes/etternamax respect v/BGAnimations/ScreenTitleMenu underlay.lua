@@ -172,10 +172,8 @@ local scrollerChoices = THEME:GetMetric("ScreenTitleMenu", "ChoiceNames")
 local _, count = string.gsub(scrollerChoices, "%,", "")
 local choices = mysplit(scrollerChoices, ",")
 local choiceCount = count + 1
-local i
 for i = 1, choiceCount do
-	t[#t + 1] =
-		Def.Quad {
+	t[#t + 1] = Def.Quad {
 		OnCommand = function(self)
 			self:xy(scrollerX, scrollerY):zoomto(0, SCREEN_WIDTH*2)
 			transformF(self, 0, i, choiceCount)
