@@ -1,6 +1,4 @@
-local mainImageWidth = 200
-local mainImageHeight = 200
-local transitionSeconds = 0.1
+local transitionSeconds = 0.64
 
 
 local scrollerChoices = THEME:GetMetric("ScreenTitleMenu", "ChoiceNames")
@@ -51,9 +49,9 @@ t[#t+1] = Def.Sprite{
 	InitCommand = function(self)
 		self:Load(THEME:GetPathG("", "MenuItems/GameStart"))
 		
-		self:stretchto(0,0, mainImageWidth, mainImageHeight) -- stop being lazy and use set size or wahtever 
+		self:zoom(.75) -- stop being lazy and use set size or wahtever 
 		self:halign(0.5):valign(0.5)
-		self:xy(SCREEN_CENTER_X, SCREEN_CENTER_Y)
+		self:xy(SCREEN_CENTER_X, SCREEN_CENTER_Y+70)
 	end,
 	
 	MenuSelectionChangedCommand  = function(self)
@@ -62,11 +60,11 @@ t[#t+1] = Def.Sprite{
 		local xDest
 		local xStart
 		if leftTransition then
-			xDest = 0 - mainImageWidth/2 -- goes left
-			xStart = SCREEN_WIDTH + mainImageWidth/2 -- or starts right
+			xDest = 0 - 600 -- goes left
+			xStart = SCREEN_WIDTH + 600 -- or starts right
 		else
-			xDest = SCREEN_WIDTH + mainImageWidth/2 -- goes right
-			xStart = 0 - mainImageWidth/2 -- or starts left
+			xDest = SCREEN_WIDTH + 600 -- goes right
+			xStart = 0 - 600 -- or starts left
 		end
 		
 		if self:GetX() ~= SCREEN_CENTER_X then
@@ -75,7 +73,7 @@ t[#t+1] = Def.Sprite{
 			xDest = SCREEN_CENTER_X
 		end
 		
-		self:linear(transitionSeconds) -- decelerate
+		self:decelerate(transitionSeconds) -- decelerate
 		self:x(xDest)
 	end
 }
@@ -86,9 +84,9 @@ t[#t+1] = Def.Sprite{
 	InitCommand = function(self)
 		self:Load(THEME:GetPathG("", "MenuItems/GameStart"))
 		
-		self:stretchto(0,0, mainImageWidth, mainImageHeight) -- stop being lazy and use set size or wahtever 
+		self:zoom(.75) -- stop being lazy and use set size or wahtever 
 		self:halign(0.5):valign(0.5)
-		self:xy(SCREEN_WIDTH + mainImageWidth/2, SCREEN_CENTER_Y)
+		self:xy(SCREEN_WIDTH + 200/2, SCREEN_CENTER_Y+70)
 	end,
 	
 	MenuSelectionChangedCommand  = function(self)
@@ -97,11 +95,11 @@ t[#t+1] = Def.Sprite{
 		local xDest
 		local xStart
 		if leftTransition then
-			xDest = 0 - mainImageWidth/2 -- goes left
-			xStart = SCREEN_WIDTH + mainImageWidth/2 -- or starts right
+			xDest = 0 - 600 -- goes left
+			xStart = SCREEN_WIDTH + 600 -- or starts right
 		else
-			xDest = SCREEN_WIDTH + mainImageWidth/2 -- goes right
-			xStart = 0 - mainImageWidth/2 -- or starts left
+			xDest = SCREEN_WIDTH + 600 -- goes right
+			xStart = 0 - 600 -- or starts left
 		end
 		
 		if self:GetX() ~= SCREEN_CENTER_X then
@@ -110,7 +108,7 @@ t[#t+1] = Def.Sprite{
 			xDest = SCREEN_CENTER_X
 		end
 		
-		self:linear(transitionSeconds) -- decelerate
+		self:decelerate(transitionSeconds) -- decelerate
 		self:x(xDest)
 	end
 }
