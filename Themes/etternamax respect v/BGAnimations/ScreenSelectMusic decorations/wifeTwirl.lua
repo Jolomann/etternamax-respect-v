@@ -274,7 +274,7 @@ t[#t + 1] =
 			self:xy(18,50):visible(true):halign(0):zoom(0.4)
 		end,
 		MintyFreshCommand = function(self)
-			self:settext(getCurRateDisplayString())
+			self:settext(getCurRateDisplayString():gsub("Music",""))
 		end,
 		CodeMessageCommand = function(self, params)
 			local rate = getCurRateValue()
@@ -689,19 +689,11 @@ t[#t + 1] =
 	end,
 	ModifyBannerCommand = function(self)
 		self:finishtweening()
-		if song then
-			local bnpath = GAMESTATE:GetCurrentSong():GetBannerPath()
-			if not bnpath then
-				bnpath = THEME:GetPathG("Common", "fallback banner")
-			end
-			self:LoadBackground(bnpath)
-		else
-			local bnpath = SONGMAN:GetSongGroupBannerPath(SCREENMAN:GetTopScreen():GetMusicWheel():GetSelectedSection())
-			if not bnpath or bnpath == "" then
-				bnpath = THEME:GetPathG("Common", "fallback banner")
-			end
-			self:LoadBackground(bnpath)
+		local bnpath = song and GAMESTATE:GetCurrentSong():GetBannerPath() or SONGMAN:GetSongGroupBannerPath(SCREENMAN:GetTopScreen():GetMusicWheel():GetSelectedSection())
+		if not bnpath or bnpath == "" then
+			bnpath = THEME:GetPathG("Common", "fallback banner")
 		end
+		self:LoadBackground(bnpath)
 		self:diffusealpha(1)
 	end,
 	ChartPreviewOnMessageCommand = function(self)
