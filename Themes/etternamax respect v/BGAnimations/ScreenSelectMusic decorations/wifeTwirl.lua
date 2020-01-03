@@ -279,7 +279,7 @@ t[#t + 1] =
 		CodeMessageCommand = function(self, params)
 			local rate = getCurRateValue()
 			ChangeMusicRate(rate, params)
-			self:settext(getCurRateDisplayString())
+			self:settext(getCurRateDisplayString():gsub("Music",""))
 		end,
 		GoalSelectedMessageCommand = function(self)
 			self:queuecommand("MintyFresh")
