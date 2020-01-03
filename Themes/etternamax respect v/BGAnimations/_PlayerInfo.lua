@@ -93,8 +93,8 @@ t[#t + 1] =
 	end
 }
 
-t[#t + 1] =
-	Def.ActorFrame {
+t[#t + 1] = Def.ActorFrame
+{
 	Name = "Avatar" .. PLAYER_1,
 	BeginCommand = function(self)
 		self:queuecommand("Set")
@@ -108,79 +108,108 @@ t[#t + 1] =
 			self:visible(true)
 		end
 	end,
-	Def.Sprite {
-		Name = "Image",
-		InitCommand = function(self)
-		--Avatar position
-			self:visible(true):halign(0):valign(0):xy(614,10)
-		end,
-		BeginCommand = function(self)
-			self:queuecommand("ModifyAvatar")
-		end,
-		ModifyAvatarCommand = function(self)
-			self:finishtweening()
-			self:Load(getAvatarPath(PLAYER_1))
-			self:zoomto(28, 28)
-		end,
-		MouseLeftClickMessageCommand = function(self)
-			if isOver(self) and not SCREENMAN:get_input_redirected(PLAYER_1) then
-				local top = SCREENMAN:GetTopScreen()
-				SCREENMAN:SetNewScreen("ScreenAssetSettings")
+	Def.Sprite
+		{
+			Name = "Image",
+			InitCommand = function(self)
+			--Avatar position
+				self:visible(true):halign(0):valign(0):xy(614,10)
+			end,
+			BeginCommand = function(self)
+				self:queuecommand("ModifyAvatar")
+			end,
+			ModifyAvatarCommand = function(self)
+				self:finishtweening()
+				self:Load(getAvatarPath(PLAYER_1))
+				self:zoomto(28, 28)
+			end,
+			MouseLeftClickMessageCommand = function(self)
+				if isOver(self) and not SCREENMAN:get_input_redirected(PLAYER_1) then
+					local top = SCREENMAN:GetTopScreen()
+					SCREENMAN:SetNewScreen("ScreenAssetSettings")
+				end
 			end
-		end
-	},
-	Def.Quad {
-		Name = "Avatar Border Top",
-		InitCommand = function(self)
-			self:visible(true):halign(0):valign(0):xy(614,10):diffuse(color("#3c3c3c"))
-		end,
-		BeginCommand = function(self)
-			self:queuecommand("ModifyAvatar")
-		end,
-		ModifyAvatarCommand = function(self)
-			self:finishtweening()
-			self:zoomto(28, 1)
-		end,
-	},
-	Def.Quad {
-		Name = "Avatar Border Bottom",
-		InitCommand = function(self)
-			self:visible(true):halign(0):valign(1):xy(614,38):diffuse(color("#3c3c3c"))
-		end,
-		BeginCommand = function(self)
-			self:queuecommand("ModifyAvatar")
-		end,
-		ModifyAvatarCommand = function(self)
-			self:finishtweening()
-			self:zoomto(28, 0.5)
-		end,
-	},
-	Def.Quad {
-		Name = "Avatar Border Left",
-		InitCommand = function(self)
-			self:visible(true):halign(0):valign(0):xy(614,10):diffuse(color("#3c3c3c"))
-		end,
-		BeginCommand = function(self)
-			self:queuecommand("ModifyAvatar")
-		end,
-		ModifyAvatarCommand = function(self)
-			self:finishtweening()
-			self:zoomto(0.5, 28)
-		end,
-	},
-	Def.Quad {
-		Name = "Avatar Border Right",
-		InitCommand = function(self)
-			self:visible(true):halign(1):valign(0):xy(642,10):diffuse(color("#3c3c3c"))
-		end,
-		BeginCommand = function(self)
-			self:queuecommand("ModifyAvatar")
-		end,
-		ModifyAvatarCommand = function(self)
-			self:finishtweening()
-			self:zoomto(1, 28)
-		end,
-	},
+		},
+	Def.Quad
+		{
+			Name = "Avatar Border Top",
+			InitCommand = function(self)
+				self:visible(true):halign(0):valign(0):xy(614,10):diffuse(color("#3c3c3c"))
+			end,
+			BeginCommand = function(self)
+				self:queuecommand("ModifyAvatar")
+			end,
+			ModifyAvatarCommand = function(self)
+				self:finishtweening()
+				self:zoomto(28+120, 1)
+			end,
+		},
+	Def.Quad
+		{
+			Name = "Avatar Border Bottom",
+			InitCommand = function(self)
+				self:visible(true):halign(0):valign(1):xy(614,38):diffuse(color("#3c3c3c"))
+			end,
+			BeginCommand = function(self)
+				self:queuecommand("ModifyAvatar")
+			end,
+			ModifyAvatarCommand = function(self)
+				self:finishtweening()
+				self:zoomto(28+120, 0.5)
+			end,
+		},
+	Def.Quad
+		{
+			Name = "Avatar Border Left",
+			InitCommand = function(self)
+				self:visible(true):halign(0):valign(0):xy(614,10):diffuse(color("#3c3c3c"))
+			end,
+			BeginCommand = function(self)
+				self:queuecommand("ModifyAvatar")
+			end,
+			ModifyAvatarCommand = function(self)
+				self:finishtweening()
+				self:zoomto(0.5, 28)
+			end,
+		},
+	Def.Quad
+		{
+			Name = "Avatar Border Right",
+			InitCommand = function(self)
+				self:visible(true):halign(1):valign(0):xy(642,10):diffuse(color("#3c3c3c"))
+			end,
+			BeginCommand = function(self)
+				self:queuecommand("ModifyAvatar")
+			end,
+			ModifyAvatarCommand = function(self)
+				self:finishtweening()
+				self:zoomto(1, 28)
+			end,
+		},
+	Def.Quad
+		{
+			Name = "Player Card Border Right",
+			InitCommand = function(self)
+				self:visible(true):halign(1):valign(0):xy(642+120,10):diffuse(color("#3c3c3c"))
+			end,
+			BeginCommand = function(self)
+				self:queuecommand("ModifyAvatar")
+			end,
+			ModifyAvatarCommand = function(self)
+				self:finishtweening()
+				self:zoomto(1, 28)
+			end,
+		},
+	Def.Sprite
+		{
+			Name = "Player Card Background",
+			InitCommand = function(self)
+				self:stretchto(642, 10+1, 642+120-1, 10+28-1)
+			end,
+			SetCommand = function(self)
+				self:Load(THEME:GetPathG("", "_OptionsActor.png")):stretchto(642, 10+1, 642+120-1, 10+28-1)
+			end,
+		},
 	--Player name string
 	LoadFont("Common Normal") ..
 		{
@@ -208,8 +237,8 @@ t[#t + 1] =
 				self:settextf("%s", profileName)
 			end
 		},
-		--MSD string
-		LoadFont("Common Normal") ..
+	--MSD string
+	LoadFont("Common Normal") ..
 		{
 			Name = "Rating",
 			InitCommand = function(self)
@@ -224,20 +253,44 @@ t[#t + 1] =
 				end
 			end,
 		},
-		--Player rating string
-		LoadFont("Common Normal") ..
+	--Player rating string
+	LoadFont("Common Normal") ..
 		{
 			Name = "Rating",
 			InitCommand = function(self)
-				self:xy(650, 24):maxwidth(400):halign(0):zoom(0.45):diffuse(getMainColor("positive")):valign(0)
+				self:xy(636, 24):maxwidth(400):halign(0):zoom(0.6):diffuse(getMainColor("positive")):valign(0)
 			end,
 			SetCommand = function(self)
-				self:settextf("%5.2f", playerRating)
+				self:settextf("%5.0f", playerRating)
 			end,
 			MouseLeftClickMessageCommand = function(self)
 				if isOver(self) and not SCREENMAN:get_input_redirected(PLAYER_1) then
 					easyInputStringWithFunction(translated_info["NameChange"], 64, false, setnewdisplayname)
 				end
+			end,
+		},
+	LoadFont("Common Bold") ..
+		{
+			Name = "Rating2",
+			InitCommand = function(self)
+				self:valign(1):halign(1):xy(642+120-2, 24+10):zoom(0.3)
+			end,
+			SetCommand = function(self)
+				self:settext(math.floor((math.fmod(playerRating, 1)+0.005)*100) .. "%")
+			end,
+		},
+	Def.Quad
+		{
+			Name = "Rating2Background",
+			InitCommand = function(self)
+				self:halign(0):valign(1):xy(642, 24+13.5):setsize(120-1, 3):diffuse(color("#000000")):diffusealpha(0.5)
+			end,
+		},
+	Def.Quad
+		{
+			Name = "Rating2Background",
+			InitCommand = function(self)
+				self:halign(0):valign(1):xy(642, 24+13.5):setsize(120*math.fmod(playerRating, 1)-1, 3):diffuse(color("#dddddd")):diffusealpha(0.75)
 			end,
 		},
 	LoadFont("Common Normal") ..
@@ -331,30 +384,31 @@ t[#t + 1] =
 				highlightIfOver(self)
 			end
 		},
-	Def.Quad {
-		InitCommand = function(self)
-			self:xy(SCREEN_CENTER_X, AvatarY + 20):halign(0.5):zoomto(100, 30):diffusealpha(0)
-		end,
-		LoginFailedMessageCommand = function(self)
-			ms.ok(translated_info["LoginFailed"])
-		end,
-		LoginMessageCommand = function(self)
-			if not DLMAN:IsLoggedIn() then return end
-			playerConfig:get_data(pn_to_profile_slot(PLAYER_1)).UserName = DLMAN:GetUsername()
-			playerConfig:get_data(pn_to_profile_slot(PLAYER_1)).PasswordToken = DLMAN:GetToken()
-			playerConfig:set_dirty(pn_to_profile_slot(PLAYER_1))
-			playerConfig:save(pn_to_profile_slot(PLAYER_1))
-			ms.ok(translated_info["LoginSuccess"])
-		end,
-		MouseLeftClickMessageCommand = function(self)
-			if isOver(self) and not SCREENMAN:get_input_redirected(PLAYER_1) then
+	Def.Quad
+		{
+			InitCommand = function(self)
+				self:xy(SCREEN_CENTER_X, AvatarY + 20):halign(0.5):zoomto(100, 30):diffusealpha(0)
+			end,
+			LoginFailedMessageCommand = function(self)
+				ms.ok(translated_info["LoginFailed"])
+			end,
+			LoginMessageCommand = function(self)
+				if not DLMAN:IsLoggedIn() then return end
+				playerConfig:get_data(pn_to_profile_slot(PLAYER_1)).UserName = DLMAN:GetUsername()
+				playerConfig:get_data(pn_to_profile_slot(PLAYER_1)).PasswordToken = DLMAN:GetToken()
+				playerConfig:set_dirty(pn_to_profile_slot(PLAYER_1))
+				playerConfig:save(pn_to_profile_slot(PLAYER_1))
+				ms.ok(translated_info["LoginSuccess"])
+			end,
+			MouseLeftClickMessageCommand = function(self)
+				if isOver(self) and not SCREENMAN:get_input_redirected(PLAYER_1) then
+					loginToggler()
+				end
+			end,
+			LoginHotkeyPressedMessageCommand = function(self)
 				loginToggler()
 			end
-		end,
-		LoginHotkeyPressedMessageCommand = function(self)
-			loginToggler()
-		end
-	},
+		},
 	LoadFont("Common Normal") ..
 		{
 			InitCommand = function(self)
