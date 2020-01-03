@@ -251,17 +251,17 @@ local t =
 	end,
 	Def.Quad {
 		InitCommand = function(self)
-			self:xy(frameX, frameY - 76):zoomto(110, 94):halign(0):valign(0):diffuse(color("#333333A6"))
+			self:xy(frameX, frameY - 76):zoomto(110, 94):halign(0):valign(0):diffuse(color("#333333A6")):diffusealpha(0)
 		end
 	},
 	Def.Quad {
 		InitCommand = function(self)
-			self:xy(frameX, frameY - 76):zoomto(8, 144):halign(0):valign(0):diffuse(getMainColor("highlight")):diffusealpha(0.5)
+			self:xy(frameX, frameY - 76):zoomto(8, 144):halign(0):valign(0):diffuse(getMainColor("highlight")):diffusealpha(0)
 		end
 	},
 	Def.Quad {
 		InitCommand = function(self)
-			self:xy(frameX, frameY + 18):zoomto(frameWidth + 4, 50):halign(0):valign(0):diffuse(color("#333333A6"))
+			self:xy(frameX, frameY + 18):zoomto(frameWidth + 4, 50):halign(0):valign(0):diffuse(color("#333333A6")):diffusealpha(0)
 		end
 	}
 }
@@ -271,9 +271,7 @@ t[#t + 1] =
 	LoadFont("Common Large") ..
 	{
 		InitCommand = function(self)
-			self:xy(18, SCREEN_BOTTOM - 225):visible(true):halign(0):zoom(0.4):maxwidth(
-				capWideScale(get43size(360), 360) / capWideScale(get43size(0.45), 0.45)
-			)
+			self:xy(18,50):visible(true):halign(0):zoom(0.4)
 		end,
 		MintyFreshCommand = function(self)
 			self:settext(getCurRateDisplayString())
@@ -319,17 +317,17 @@ t[#t + 1] =
 		{
 			Name = "MSD",
 			InitCommand = function(self)
-				self:xy(frameX + 58, frameY - 62):halign(0.5):zoom(0.6):maxwidth(110 / 0.6)
+				self:xy(frameX + 58, frameY - 62):halign(0.5):zoom(0.6):maxwidth(110 / 0.6):diffusealpha(0)
 			end,
 			MintyFreshCommand = function(self)
 				if song then
 					if steps:GetStepsType() == "StepsType_Dance_Single" then
 						local meter = steps:GetMSD(getCurRateValue(), 1)
 						self:settextf("%05.2f", meter)
-						self:diffuse(byMSD(meter))
+						self:diffuse(byMSD(meter)):diffusealpha(0)
 					else
 						self:settextf("%5.2f", steps:GetMeter()) -- fallthrough to pre-defined meters for non 4k charts -mina
-						self:diffuse(byDifficulty(steps:GetDifficulty()))
+						self:diffuse(byDifficulty(steps:GetDifficulty())):diffusealpha(0)
 					end
 				else
 					self:settext("")
@@ -340,13 +338,13 @@ t[#t + 1] =
 	LoadFont("Common Normal") ..
 		{
 			InitCommand = function(self)
-				self:xy(frameX + 120, frameY - 60):halign(0):zoom(0.6, maxwidth, 125)
+				self:xy(frameX + 120, frameY - 60):halign(0):zoom(0.6, maxwidth, 125):diffusealpha(0)
 			end,
 			MintyFreshCommand = function(self)
 				if song then
 					local ss = steps:GetRelevantSkillsetsByMSDRank(getCurRateValue(), 1)
 					local out = ss == "" and "" or ms.SkillSetsTranslatedByName[ss]
-					self:settext(out)
+					self:settext(out):diffusealpha(0)
 				else
 					self:settext("")
 				end
@@ -355,49 +353,49 @@ t[#t + 1] =
 				self:visible(false)
 			end,
 			ChartPreviewOffMessageCommand = function(self)
-				self:visible(true)
+				self:visible(true):diffusealpha(0)
 			end
 		},
 	LoadFont("Common Normal") ..
 		{
 			InitCommand = function(self)
-				self:xy(frameX + 120, frameY - 30):halign(0):zoom(0.6, maxwidth, 125)
+				self:xy(frameX + 120, frameY - 30):halign(0):zoom(0.6, maxwidth, 125):diffusealpha(0)
 			end,
 			MintyFreshCommand = function(self)
 				if song then
 					local ss = steps:GetRelevantSkillsetsByMSDRank(getCurRateValue(), 2)
 					local out = ss == "" and "" or ms.SkillSetsTranslatedByName[ss]
-					self:settext(out)
+					self:settext(out):diffusealpha(0)
 				else
-					self:settext("")
+					self:settext(""):diffusealpha(0)
 				end
 			end,
 			ChartPreviewOnMessageCommand = function(self)
 				self:visible(false)
 			end,
 			ChartPreviewOffMessageCommand = function(self)
-				self:visible(true)
+				self:visible(true):diffusealpha(0)
 			end
 		},
 	LoadFont("Common Normal") ..
 		{
 			InitCommand = function(self)
-				self:xy(frameX + 120, frameY):halign(0):zoom(0.6, maxwidth, 125)
+				self:xy(frameX + 120, frameY):halign(0):zoom(0.6, maxwidth, 125):diffusealpha(0)
 			end,
 			MintyFreshCommand = function(self)
 				if song then
 					local ss = steps:GetRelevantSkillsetsByMSDRank(getCurRateValue(), 3)
 					local out = ss == "" and "" or ms.SkillSetsTranslatedByName[ss]
-					self:settext(out)
+					self:settext(out):diffusealpha(0)
 				else
-					self:settext("")
+					self:settext(""):diffusealpha(0)
 				end
 			end,
 			ChartPreviewOnMessageCommand = function(self)
 				self:visible(false)
 			end,
 			ChartPreviewOffMessageCommand = function(self)
-				self:visible(true)
+				self:visible(true):diffusealpha(0)
 			end
 		},
 	-- **score related stuff** These need to be updated with rate changed commands
@@ -405,14 +403,14 @@ t[#t + 1] =
 	LoadFont("Common Large") ..
 		{
 			InitCommand = function(self)
-				self:xy(frameX + 55, frameY + 50):zoom(0.6):halign(0.5):maxwidth(125):valign(1)
+				self:xy(frameX + 55, frameY + 50):zoom(0.6):halign(0.5):maxwidth(125):valign(1):diffusealpha(0)
 			end,
 			MintyFreshCommand = function(self)
 				if song and score then
 					self:settextf("%05.2f%%", notShit.floor(score:GetWifeScore() * 10000) / 100)
-					self:diffuse(getGradeColor(score:GetWifeGrade()))
+					self:diffuse(getGradeColor(score:GetWifeGrade())):diffusealpha(0)
 				else
-					self:settext("")
+					self:settext(""):diffusealpha(0)
 				end
 			end
 		},
@@ -420,7 +418,7 @@ t[#t + 1] =
 	LoadFont("Common Normal") ..
 		{
 			InitCommand = function(self)
-				self:xy(frameX + 55, frameY + 58):zoom(0.5):halign(0.5)
+				self:xy(frameX + 55, frameY + 58):zoom(0.5):halign(0.5):diffusealpha(0)
 			end,
 			MintyFreshCommand = function(self)
 				if song and score then
@@ -451,7 +449,7 @@ t[#t + 1] =
 		{
 			Name = "Goalll",
 			InitCommand = function(self)
-				self:xy(frameX + 135, frameY + 33):zoom(0.6):halign(0.5):valign(0)
+				self:xy(frameX + 135, frameY + 33):zoom(0.6):halign(0.5):valign(0):diffusealpha(0)
 			end,
 			MintyFreshCommand = function(self)
 				if song and steps then
@@ -470,7 +468,7 @@ t[#t + 1] =
 	LoadFont("Common Normal") ..
 		{
 			InitCommand = function(self)
-				self:xy(frameX + 185, frameY + 59):zoom(0.4):halign(0)
+				self:xy(frameX + 185, frameY + 59):zoom(0.4):halign(0):diffusealpha(0)
 			end,
 			MintyFreshCommand = function(self)
 				if song and score then
@@ -484,7 +482,7 @@ t[#t + 1] =
 	LoadFont("Common Normal") ..
 		{
 			InitCommand = function(self)
-				self:xy(frameX + 185, frameY + 49):zoom(0.4):halign(0)
+				self:xy(frameX + 185, frameY + 49):zoom(0.4):halign(0):diffusealpha(0)
 			end,
 			MintyFreshCommand = function(self)
 				if song and score then
@@ -498,13 +496,13 @@ t[#t + 1] =
 		{
 			Name = "ClearType",
 			InitCommand = function(self)
-				self:xy(frameX + 185, frameY + 35):zoom(0.6):halign(0)
+				self:xy(frameX + 185, frameY + 35):zoom(0.6):halign(0):diffusealpha(0)
 			end,
 			MintyFreshCommand = function(self)
 				if song and score then
 					self:visible(true)
 					self:settext(getClearTypeFromScore(PLAYER_1, score, 0))
-					self:diffuse(getClearTypeFromScore(PLAYER_1, score, 2))
+					self:diffuse(getClearTypeFromScore(PLAYER_1, score, 2)):diffusealpha(0)
 				else
 					self:visible(false)
 				end
@@ -515,12 +513,12 @@ t[#t + 1] =
 		File = THEME:GetPathF("BPMDisplay", "bpm"),
 		Name = "BPMDisplay",
 		InitCommand = function(self)
-			self:xy(capWideScale(get43size(384), 384) + 62, SCREEN_BOTTOM - 100):halign(1):zoom(0.50)
+			self:xy(capWideScale(get43size(384), 384) + 62, SCREEN_BOTTOM - 100):halign(1):zoom(0.50):diffusealpha(0)
 		end,
 		MortyFartsCommand = function(self)
 			if song then
 				self:visible(true)
-				self:SetFromSong(song)
+				self:SetFromSong(song):diffusealpha(0)
 			else
 				self:visible(false)
 			end
@@ -532,13 +530,13 @@ t[#t + 1] =
 			InitCommand = function(self)
 				self:xy((capWideScale(get43size(384), 384)) + 62, SCREEN_BOTTOM - 85):visible(true):halign(1):zoom(
 					capWideScale(get43size(0.6), 0.6)
-				):maxwidth(capWideScale(get43size(360), 360) / capWideScale(get43size(0.45), 0.45))
+				):maxwidth(capWideScale(get43size(360), 360) / capWideScale(get43size(0.45), 0.45)):diffusealpha(0)
 			end,
 			MortyFartsCommand = function(self)
 				if song then
 					local playabletime = GetPlayableTime()
 					self:settext(SecondsToMMSS(playabletime))
-					self:diffuse(byMusicLength(playabletime))
+					self:diffuse(byMusicLength(playabletime)):diffusealpha(0)
 				else
 					self:settext("")
 				end
@@ -553,7 +551,7 @@ local function radarPairs(i)
 		LoadFont("Common Normal") ..
 			{
 				InitCommand = function(self)
-					self:xy(frameX + 13, frameY - 52 + 13 * i):zoom(0.5):halign(0):maxwidth(120)
+					self:xy(frameX + 13, frameY - 52 + 13 * i):zoom(0.5):halign(0):maxwidth(120):diffusealpha(0)
 				end,
 				MintyFreshCommand = function(self)
 					if song then
@@ -566,7 +564,7 @@ local function radarPairs(i)
 		LoadFont("Common Normal") ..
 			{
 				InitCommand = function(self)
-					self:xy(frameX + 105, frameY + -52 + 13 * i):zoom(0.5):halign(1):maxwidth(60)
+					self:xy(frameX + 105, frameY + -52 + 13 * i):zoom(0.5):halign(1):maxwidth(60):diffusealpha(0)
 				end,
 				MintyFreshCommand = function(self)
 					if song then
@@ -595,7 +593,7 @@ r[#r + 1] =
 	LoadFont("Common Normal") ..
 	{
 		InitCommand = function(self)
-			self:xy(frameX + 120, SCREEN_BOTTOM - 225):visible(true)
+			self:xy(frameX + 120, SCREEN_BOTTOM - 225):visible(true):diffusealpha(0)
 			self:zoom(0.7)
 			self:halign(0)
 		end,
@@ -615,7 +613,7 @@ t[#t + 1] =
 	LoadFont("Common Normal") ..
 	{
 		InitCommand = function(self)
-			self:xy(capWideScale(get43size(384), 384) + 41, SCREEN_BOTTOM - 100):halign(1):zoom(0.50)
+			self:xy(capWideScale(get43size(384), 384) + 41, SCREEN_BOTTOM - 100):halign(1):zoom(0.50):diffusealpha(0)
 		end,
 		MortyFartsCommand = function(self)
 			if song then
@@ -630,13 +628,13 @@ t[#t + 1] =
 t[#t + 1] =
 	Def.Sprite {
 	InitCommand = function(self)
-		self:xy(capWideScale(get43size(344), 364) + 50, capWideScale(get43size(345), 255)):halign(0.5):valign(1)
+		self:xy(capWideScale(get43size(344), 364) + 50, capWideScale(get43size(345), 255)):halign(0.5):valign(1):diffusealpha(0)
 	end,
 	MortyFartsCommand = function(self)
 		self:finishtweening()
 		if song then
 			if song:HasCDTitle() then
-				self:visible(true)
+				self:visible(true):diffusealpha(0)
 				self:Load(song:GetCDTitlePath())
 			else
 				self:visible(false)

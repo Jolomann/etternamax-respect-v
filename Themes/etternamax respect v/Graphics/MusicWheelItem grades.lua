@@ -52,18 +52,4 @@ return Def.ActorFrame {
 				end
 			end
 		},
-		Def.Sprite {
-			InitCommand = function(self)
-				self:halign(1):xy(0, 0):zoomto(64, 32)
-			end,
-			SetGradeCommand = function(self, params)
-				if params.Favorited then
-					self:Load(GAMESTATE:GetCurrentSong():GetBackgroundPath())
-					self:zoomto(64, 32)
-					self:visible(true)
-				else
-					self:visible(false)
-				end
-			end
-		},
 }
