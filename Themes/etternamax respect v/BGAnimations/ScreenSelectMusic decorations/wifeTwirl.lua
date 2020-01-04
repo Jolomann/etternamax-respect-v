@@ -279,7 +279,7 @@ t[#t + 1] =
 		CodeMessageCommand = function(self, params)
 			local rate = getCurRateValue()
 			ChangeMusicRate(rate, params)
-			self:settext(getCurRateDisplayString())
+			self:settext(getCurRateDisplayString():gsub("Music",""))
 		end,
 		GoalSelectedMessageCommand = function(self)
 			self:queuecommand("MintyFresh")
@@ -673,7 +673,7 @@ t[#t + 1] =
 	end
 }
 
-t[#t + 1] =
+--[[t[#t + 1] =
 	Def.Sprite {
 	Name = "Banner",
 	InitCommand = function(self)
@@ -702,7 +702,7 @@ t[#t + 1] =
 	ChartPreviewOffMessageCommand = function(self)
 		self:visible(true)
 	end
-}
+}]]
 local enabledC = "#099948"
 local disabledC = "#ff6666"
 local force = false

@@ -16,8 +16,8 @@ local itsOn = false
 
 local stepsdisplayx = SCREEN_WIDTH * 0.56 - capWideScale(48, 56)
 
-t[#t + 1] =
-	Def.ActorFrame {
+t[#t+1] = LoadActor("StepsDisplayList")
+	--[[Def.ActorFrame {
 	Name = "StepsDisplay",
 	InitCommand = function(self)
 		self:xy(stepsdisplayx, 70):valign(0)
@@ -96,7 +96,7 @@ t[#t + 1] =
 		},
 		CursorP2Frame = Def.Actor {}
 	}
-}
+}]]
 
 t[#t + 1] = LoadActor("../_mousewheelscroll")
 collectgarbage()
