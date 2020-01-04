@@ -12,7 +12,7 @@ local lastTime = GetTimeSinceStart() -- last input time
 local function input(event)
 	if event.type ~= "InputEventType_Release" then
 		lastTime = GetTimeSinceStart()
-		if event.DeviceInput.button == "DeviceButton_F12" then
+		if event.DeviceInput.button == "DeviceButton_F1" then
 			if not enabled then
 				MESSAGEMAN:Broadcast("ShowHelpOverlay")
 				enabled = true
