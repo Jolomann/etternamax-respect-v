@@ -207,7 +207,7 @@ t[#t + 1] = Def.ActorFrame
 				self:stretchto(642, 10+1, 642+120-1, 10+28-1)
 			end,
 			SetCommand = function(self)
-				self:Load(THEME:GetPathG("", "_OptionsActor.png")):stretchto(642, 10+1, 642+120-1, 10+28-1)
+				self:Load(THEME:GetPathG("", "Fallback Playercard.png")):stretchto(642, 10+1, 642+120-1, 10+28-1)
 			end,
 		},
 	--Player name string
