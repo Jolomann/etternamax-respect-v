@@ -11,17 +11,6 @@ function cursorClick(index)
 			Name = "CursorClick",
 			InitCommand = function(self)
 				self:diffusealpha(0)
-			end,
-			MouseLeftClickMessageCommand = function(self)
-				if index == curIndex then
-					self:finishtweening()
-					self:xy(INPUTFILTER:GetMouseX(), INPUTFILTER:GetMouseY())
-					self:diffusealpha(0.6)
-					self:zoom(0)
-					self:decelerate(0.5)
-					self:diffusealpha(0)
-					self:zoom(0.5)
-				end
 			end
 		}
 end
@@ -38,7 +27,7 @@ end
 t[#t+1] = LoadActor("cursorr")..{
 	Name="Cursor";
 	InitCommand=function(self)
-		self:xy(0,0):zoom(1)
+		self:xy(0,0):zoom(0)
 	end
 }
 
@@ -46,7 +35,7 @@ local function Update(self)
 	--self:GetChild("MouseXY"):settextf("X:%5.2f Y:%5.2f W:%5.2f",INPUTFILTER:GetMouseX(),INPUTFILTER:GetMouseY(),INPUTFILTER:GetMouseWheel())
 	if not PREFSMAN:GetPreference("Windowed") then
 		self:GetChild("Cursor"):xy(INPUTFILTER:GetMouseX(), INPUTFILTER:GetMouseY())
-		self:GetChild("Cursor"):visible(true)
+		self:GetChild("Cursor"):visible(false)
 	else
 		self:GetChild("Cursor"):visible(false)
 	end
@@ -54,7 +43,7 @@ local function Update(self)
 end
 t.InitCommand = function(self)
 	self:SetUpdateFunction(Update)
-	self:SetUpdateFunctionInterval(.008)
+	self:SetUpdateFunctionInterval(99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999)
 end
 
 return t

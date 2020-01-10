@@ -1075,13 +1075,7 @@ local function handleRegionSetting(positionGiven)
 end
 
 local function duminput(event)
-	if event.type == "InputEventType_Release" then
-		if event.DeviceInput.button == "DeviceButton_left mouse button" then
-			MESSAGEMAN:Broadcast("MouseLeftClick")
-		elseif event.DeviceInput.button == "DeviceButton_right mouse button" then
-			MESSAGEMAN:Broadcast("MouseRightClick")
-		end
-	elseif event.type == "InputEventType_FirstPress" then
+	if event.type == "InputEventType_FirstPress" then
 		if event.DeviceInput.button == "DeviceButton_backspace" then
 			if loopStartPos ~= nil then
 				SCREENMAN:GetTopScreen():SetSongPositionAndUnpause(loopStartPos, 1, true)

@@ -9,11 +9,6 @@ local function input(event)
 				MESSAGEMAN:Broadcast("TabChanged")
 			end
 		end
-		if event.DeviceInput.button == "DeviceButton_left mouse button" then
-			MESSAGEMAN:Broadcast("MouseLeftClick")
-		elseif event.DeviceInput.button == "DeviceButton_right mouse button" then
-			MESSAGEMAN:Broadcast("MouseRightClick")
-		end
 	end
 	if event.DeviceInput.button == "DeviceButton_left ctrl" then
 		if event.type == "InputEventType_Release" then

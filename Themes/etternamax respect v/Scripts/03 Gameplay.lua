@@ -320,10 +320,12 @@ local CodeDetectorCodes = {
 	},
 	-- Evaluation:
 	SaveScreenshot1 = {
-		default = "MenuLeft-MenuRight"
+		default = "DeviceButton_F12",
+		dance = "DeviceButton_F12"
 	},
 	SaveScreenshot2 = {
-		default = "'DeviceButton_F12"
+		default = "DeviceButton_F12",
+		dance = "DeviceButton_F12"
 	},
 	-- modifiers section
 	CancelAll = {
@@ -368,12 +370,12 @@ local CodeDetectorCodes = {
 	},
 	NextScrollSpeed = {
 		default = "",
-		dance = "'DeviceButton_2",
+		dance = "DeviceButton_2",
 		pump = "UpLeft,UpRight,UpLeft,UpRight,Center"
 	},
 	PreviousScrollSpeed = {
 		default = "",
-		dance = "'DeviceButton_1",
+		dance = "DeviceButton_1",
 		pump = "UpRight,UpLeft,UpRight,UpLeft,Center"
 	},
 	-- cancel all in player options

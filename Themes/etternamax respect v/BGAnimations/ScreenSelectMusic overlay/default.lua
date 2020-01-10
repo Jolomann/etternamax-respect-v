@@ -1,10 +1,8 @@
-local showVisualizer = themeConfig:get_data().global.ShowVisualizer
+local showVisualizer = false
 
 local function input(event)
 	if event.DeviceInput.button == "DeviceButton_left mouse button" and event.type == "InputEventType_Release" then
-		MESSAGEMAN:Broadcast("MouseLeftClick")
 	elseif event.DeviceInput.button == "DeviceButton_right mouse button" and event.type == "InputEventType_Release" then
-		MESSAGEMAN:Broadcast("MouseRightClick")
 	end
 	return false
 end

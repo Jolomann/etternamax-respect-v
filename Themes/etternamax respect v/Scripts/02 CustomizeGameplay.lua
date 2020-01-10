@@ -859,9 +859,6 @@ function MovableInput(event)
 		-- so we don't have to worry about anything weird happening with the ersatz inputs -mina
 		if event.DeviceInput.is_mouse then	
 			if event.DeviceInput.button == "DeviceButton_right mouse button" then
-				Movable.current = "None"
-				Movable.pressed = false
-				Movable.message:visible(Movable.pressed)
 			end
 			return 
 		end
