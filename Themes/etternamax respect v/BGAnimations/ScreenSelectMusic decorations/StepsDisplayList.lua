@@ -69,17 +69,18 @@ local t = Def.ActorFrame
 				self:settext("Title")
 			end,
 			StepsChangedCommand = function(self)
-				self:stoptweening()
+				self:stoptweening():diffusealpha(0)
 				titleScroll = 0
 				self:settext(song and song:GetTranslitMainTitle() or "")
 				self:queuecommand("Scroll")
+				self:decelerate(0.5):diffusealpha(1)
 			end,
 			ScrollCommand = function(self) ------------------------------------------------------------- probably change this to addx and crop the sides
 				if string.len(song:GetTranslitMainTitle()) >= titleScroll+20 then
 					if titleScroll == 0 then
 						self:sleep(2)
 					end
-					self:settext(string.sub(song:GetTranslitMainTitle(),titleScroll,titleScroll+20))
+					self:settext(string.sub(song:GetTranslitMainTitle(),1,20) .. "...")
 					titleScroll = titleScroll + 1
 					self:sleep(0.1)
 					self:queuecommand("Scroll")
