@@ -1,4 +1,7 @@
 local bgPosTable = {
+--The following table simulates a low sample rate box blur(maybe not exactly a box blur but you get the point)
+--Blur effect achieved by layering 12 low opacity backgrounds and offsetting their positions.
+
 --The grid of backgrounds is shaped like
 --a 4x4 grid of dots that's missing the corners so it becomes 12 sprites in total.
 --The points in the grid are offset from the center point
