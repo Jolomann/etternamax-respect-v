@@ -1,4 +1,6 @@
 # etternamax-respect-v
+Consider this abandoned for the time being. Feel free to use the contents in other themes
+
 Recreation of DJMAX RESPECT V in etterna .67
 
 https://www.youtube.com/watch?v=0opI1M4FNRg will be a useful reference
